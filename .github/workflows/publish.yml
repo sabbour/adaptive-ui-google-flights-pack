@@ -19,7 +19,10 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com
 
-      - run: npm ci
+      # Using `npm install` instead of `npm ci` because @sabbour/adaptive-ui-core
+      # (a peerDependency on GitHub Package Registry) cannot be pre-committed to the
+      # lock file. `npm install` resolves and installs it at runtime using NODE_AUTH_TOKEN.
+      - run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
