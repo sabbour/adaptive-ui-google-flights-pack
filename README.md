@@ -1,5 +1,7 @@
 # @sabbour/adaptive-ui-google-flights-pack
 
+[![CI](https://github.com/sabbour/adaptive-ui-google-flights-pack/actions/workflows/ci.yml/badge.svg)](https://github.com/sabbour/adaptive-ui-google-flights-pack/actions/workflows/ci.yml)
+
 An [Adaptive UI](https://github.com/sabbour/adaptive-ui-framework) component pack for **Google Flights** integration. Provides live flight search results and styled flight link cards with protobuf-encoded Google Flights URLs.
 
 ## Components
