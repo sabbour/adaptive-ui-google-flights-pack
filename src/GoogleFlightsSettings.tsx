@@ -7,15 +7,14 @@ function isDevMode(): boolean {
   try { return import.meta.env?.DEV === true; } catch { return false; }
 }
 
-/** Dev-mode proxy path (matches vite.config.ts) */
-const DEV_PROXY_PREFIX = '/gflights-proxy/';
+/** API proxy path — works in both dev (Vite proxy) and production (SWA Functions) */
+const API_PROXY_PREFIX = '/api/gflights-proxy/';
 
 export function getStoredCorsProxy(): string {
-  // In dev mode, use the built-in Vite proxy automatically
-  if (isDevMode()) {
-    return DEV_PROXY_PREFIX;
-  }
-  return localStorage.getItem(CORS_PROXY_KEY) ?? '';
+  // Use the /api/ backend by default; custom CORS proxy overrides in production
+  const custom = localStorage.getItem(CORS_PROXY_KEY) ?? '';
+  if (isDevMode() || !custom) return API_PROXY_PREFIX;
+  return custom;
 }
 
 export function storeCorsProxy(proxy: string): void {
